@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<!-- so meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="Ethical Hacking // Pentesting">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dextar">
+<meta property="og:url" content="https://dex-tar.github.io/python-script-system-check.html">
+<meta property="og:site_name" content="Dextar">
+<meta property="og:description" content="Ethical Hacking // Pentesting">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="dextar">
+<meta property="og:image" content="https://dex-tar.github.io/images/python-script.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dex-tar.github.io/images/python-script.png">
+    
+
+<!-- title -->
+<title>Python Script for System Check 🐍</title>
+
+<!-- styles -->  
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- persian styles -->       
+<link rel="stylesheet" href="../css/rtl.css">
+
+<!-- rss -->
+<link rel="alternate" href="https://dex-tar.github.io/" title="Ethical Hacking // Pentesting" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="index.html#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+          
+        <li><a class="icon" href="Essential-Skills-for-Aspiring-Pentesters.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="install-kali-virtual-machine-apple-m1-utm.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+
+        <li><a class="icon" href="python-script-system-check.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="python-script-system-check.html"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+<div id="share" style="display: none">
+  <ul>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dex-tar.github.io/2023/python-script-system-check.html&title=Python Script for System Check"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dex-tar.github.io/2023/python-script-system-check.html&is_video=false&description=Python Script for System Check"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Python Script for System Check&body=Check out this article: https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dex-tar.github.io/2023/python-script-system-check.html&title=Python Script for System Check"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dex-tar.github.io/2023/python-script-system-check.html&name=Python Script for System Check&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  </ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python Script for System Check
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Dextar</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-09-29T22:00:00.000Z" itemprop="datePublished">2023-09-29</time>        
+</div>
+
+      
+<div class="article-category">
+  <i class="fas fa-archive"></i>
+  <a class="category-link" href="../categories/category-scripts.html">scripts</a> › <a class="category-link" href="../categories/category-scripts.html">tools</a>
+</div>      
+</div>
+
+</header>
+<div class="content" itemprop="articleBody">
+  <img src="../images/python-script.png" class="">
+</div>
+
+<div class="content" itemprop="articleBody">
+  <p>This Python script is designed for system administrators and users to perform health checks on their systems.</p>
+  <p>The script consists of functions to check various aspects of system health.</p>
+  <p>1. Checks if a reboot is pending.<br>
+     2. Verifies if there is enough free disk space.<br>
+     3.  Specifically checks if the root partition is nearing full capacity.<br>
+     4.  Determines if there is an active network connection.</p>
+
+<figure class="highlight python"><table><tr><td class="gutter"></td>
+    <td class="code"><pre>
+    #!/usr/bin/env python3
+ 
+    import os
+    import shutil
+    import sys
+    import socket
+
+    def check_reboot():
+        """Returns True if the computer has a pending reboot."""
+        return os.path.exists("/run/reboot-required")
+         
+    def check_disk_full(disk, min_gb, min_percent):
+        """Returns True if there is enough free disk space, false otherwise."""
+        du = shutil.disk_usage(disk)
+        # Calculate the percentage of free space
+        percent_free = 100 * du.free / du.total
+        # Calculate how many free gigabytes
+        gigabytes_free = du.free / 2**30
+        if gigabytes_free < min_gb or percent_free < min_percent:
+            return True
+        return False
+         
+    def check_root_full():
+        """Returns True if the root partition is full, False otherwise."""
+        return check_disk_full(disk="/", min_gb=2, min_percent=10)
+         
+    def check_no_network():
+        """Returns True if it fails to resolve Google´s URL, False otherwise"""
+         try:
+            socket.gethostbyname("www.google.com")
+            return False
+        except:
+            return True
+         
+    def main():
+        checks = [(
+            check_reboot, "Pending Reboot"),
+            (check_root_full, "Root partition full"),
+            (check_no_network, "No working network"),
+            ]
+        everything_ok = True
+        for check, msg in checks:
+            if check():
+                print(msg)
+                everything_ok= False
+         
+        if not everything_ok:
+            sys.exit(1)
+         
+        print("Everything ok.")
+        sys.exit(0)
+         
+    main()
+        
+</pre></td></tr></table></figure>
+
+<p>Save the file with a .py extension (e.g., system_health_check.py) in a directory of your choice. Use the chmod command to make the script executable.</p>
+
+<figure class="highlight bash"><table><tr><td class="gutter">
+    <td class="code">
+        chmod +x system_health_check.py
+    
+    </td></tr></table></figure>
+
+<p>Now, you can run the script directly from the terminal using </p>
+
+<figure class="highlight bash"><table><tr><td class="gutter">
+    <td class="code">
+        ./system_health_check.py
+    
+</td></tr></table></figure>
+
+
+</div>
+</article>
+
+
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+<div id="share-footer" style="display: none">
+  <ul>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dex-tar.github.io/2023/python-script-system-check.html&title=Python Script for System Check"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dex-tar.github.io/2023/python-script-system-check.html&is_video=false&description=Python Script for System Check"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Python Script for System Check&body=Check out this article: https://dex-tar.github.io/2023/python-script-system-check.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dex-tar.github.io/2023/python-script-system-check.html&title=Python Script for System Check"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dex-tar.github.io/2023/python-script-system-check.html&name=Python Script for System Check&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  </ul>
+</div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#menu" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="share" class="icon" href="#share-footer" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="python-script-system-check.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+<footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    2023
+    Dextar
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</div>
+
+    <!-- styles -->
+<link rel="stylesheet" href="../lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="../lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+<script src="../lib/jquery/jquery.min.js"></script>
+
+
+<script src="../lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+<script src="../lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="../js/main.js"></script>
+
+<!-- search -->
+<script src="js/search.js"></script>
+
+<!-- Google Analytics -->
+<!-- Baidu Analytics -->
+<!-- Umami Analytics -->
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
+

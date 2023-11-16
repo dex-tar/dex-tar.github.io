@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<!-- so meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="Ethical Hacking // Pentesting">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dextar">
+<meta property="og:url" content="https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html">
+<meta property="og:site_name" content="Dextar">
+<meta property="og:description" content="Ethical Hacking // Pentesting">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="dextar">
+<meta property="og:image" content="https://dex-tar.github.io/agent-sudo/agent-sudo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dex-tar.github.io/images/agent-sudo/agent-sudo.png">
+    
+    
+<!-- title -->
+<title>CTF - Agent Sudo - Try Hack Me</title>
+
+<!-- styles -->
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- persian styles -->      
+<link rel="stylesheet" href="../css/rtl.css">
+
+<!-- rss -->    
+<link rel="alternate" href="https://dex-tar.github.io/" title="Ethical Hacking // Pentesting" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+<div id="header-post">
+<a id="menu-icon" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+<a id="menu-icon-tablet" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+<a id="top-icon-tablet" href="index.html#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id="menu">
+  <span id="nav">
+    <ul>    
+          <li><a href="../index.html">Home</a></li>       
+          <li><a href="../archives.html">Archive</a></li>
+        
+    </ul>
+  </span>
+<br/>
+
+<span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="bash-script-system-check.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="ctf-try-hack-me-agent-sudo.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="ctf-try-hack-me-agent-sudo.html"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+<div id="share" style="display: none">
+<ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&text=Agent Sudo - TryHackMe"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&title=Agent Sudo - TryHackMe"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&is_video=false&description=Agent Sudo - TryHackMe"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Agent Sudo - TryHackMe - TryHackMe&body=Check out this article: https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&title=Agent Sudo - TryHackMe"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html&name=Agent Sudo - TryHackMe&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+     <!-- sections -->
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Author-Note"><span class="toc-number">1.</span> <span class="toc-text">Author Note</span></a>
+        </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration"><span class="toc-number">2.</span> <span class="toc-text">Enumeration</span></a>
+        </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-Craking-Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Hash Cracking and Brute force</span></a>
+        </li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Flag"><span class="toc-number">4.</span> <span class="toc-text">Capture the User Flag</span></a>
+        </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privilege-Scalation"><span class="toc-number">5.</span> <span class="toc-text">Privilege Scalation</span></a>
+        </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">6.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+<!-- end sections -->
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+      CTF - Agent Sudo - Try Hack Me
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Dextar</span>
+      </span>
+      
+    <div class="postdate">
+      
+      <time datetime="2023-11-08T23:00:00.000Z" itemprop="datePublished">2023-11-08</time>
+        
+      
+    </div>
+
+   
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="../categories/category-ctf.html">CTF</a> › <a class="category-link" href="../categories/category-ctf.html">writeups</a>
+    </div>
+</div>
+</header>
+  
+<div class="content" itemprop="articleBody">
+    <img src="../images/agent-sudo/agent-sudo.png" class="">
+    <p>Image from <a target="_blank" rel="noopener" href="https://tryhackme.com/room/agentsudoctf">THM</a> </p>
+</div>
+
+<div class="content" itemprop="articleBody">
+    <p>Today I am going to walk you through the Agent Sudo Room from <a target="_blank" rel="noopener" href="https://tryhackme.com/room/agentsudoctf">TryHackMe.</a></p>
+    <p>When I started playing CTF and reading write-ups, I found some of them were not guides but just a collection of answers. <br>
+      <p>This felt like cheating instead of learning. </p>
+      <p>This article aims to be a more comprehensive step-by-step guide with explanations to understand the process.</p>
+    </a>
+
+    <br>
+  <!-- Link Image -->
+    <a target="_blank" href="https://tryhackme.com/room/agentsudoctf">
+      <img src="../images/agent-sudo/thm-agentsudo.png" alt="Agent Sudo">
+    </a>
+  <!-- Link Image -->
+    <p><cite>You found a secret server located under the deep sea. Your task is to hack inside the server and reveal the truth.</cite></p>
+<h2 id="Author-Note"><a href="#Author-Note" class="headerlink" title="Author-Note"></a>Author Note</h2>
+<p><cite>Welcome to another THM exclusive CTF room. Your task is simple, capture the flags just like the other CTF room. Have Fun!
+  If you are stuck inside the black hole, post on the forum or ask in the TryHackMe discord.</cite></p>
+  
+
+<!-- Enumeration -->
+  <h2 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h2>
+  <p><cite>Enumerate the machine and get all the important information.</cite><br>
+     MACHINE IP ➡️ 10.10.232.67<br>
+     Create the environmental variable for the IP and ping machine. <br>
+
+</p>
+  <figure class="highlight bash"><td class="code"><span class="line">
+    export ip=10.10.232.67
+    ping -c 3 $ip
+  </td></figure>
+ 
+<p>Nmap Scan:</p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+nmap -sV -sC -O -oN nmap_scan $ip
+</td></figure>
+<br>
+<img src="../images/agent-sudo/3.png" class=""><br>
+We discover open ports in 21 (ftp)  22 (ssh) and 80 (http).
+
+<p>While nmap is running, visit the website and seach for robots.txt
+  <br><br>
+  http://10.10.232.67
+</p>
+<img src="../images/agent-sudo/1.png" class=""><br>
+Nice, we now there is an <strong>Agent R</strong> and something about the <strong>user-agent.</strong>
+
+<p>http://$ip/robots.txt  
+</p>
+<img src="../images/agent-sudo/2.png" class=""><br>
+
+<p> Identify Web Technologies with <strong>whatweb.</strong></p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+whatweb http://$ip 
+</td></figure>
+<br>
+<img src="../images/agent-sudo/4.png" class=""><br>
+
+<p> Directory Enumeration with <strong>GoBuster.</strong></p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+gobuster dir -u http://$ip -w /usr/share/wordlists/dirb/common.txt
+</td></figure>
+<br>
+<img src="../images/agent-sudo/5.png" class=""><br>
+
+
+<p> Going back to the User-Agent, I created a wordlist for Burp, containing only single characters.<br><br>
+  0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~<br><br>
+  Open Burp and start intercepting. We will send different petitions with the created list.<br><br>
+  Send to Intruder, select the position and the wordlist created before as the payload.<br><br>
+</p>
+<img src="../images/agent-sudo/6.png" class=""><br>
+<img src="../images/agent-sudo/7.png" class=""><br>
+
+
+<p>Start the attack 👏.
+We need to look for the difference in lenght of the response. 
+We know <strong>R</strong> exists and Burpsuite will demonstrate it.
+</p>
+<img src="../images/agent-sudo/8.png" class=""><br>
+
+<p>And we discover there is an agent <strong>C</strong><br>
+</p>
+<img src="../images/agent-sudo/9.png" class=""><br>
+
+<p>So, let´s send it to Repeater to see the response we get if we change the user-agent
+  We see content is the same, but we receive a new location in the header response. 
+  </p>
+  <img src="../images/agent-sudo/10.png" class="">
+  <p>agent_C_attention.php
+</p>
+
+<p>Let´s visit that URL<br>
+   http://10.10.232.67/agent_C_attention.php 
+  </p>
+  <img src="../images/agent-sudo/11.png" class=""><br>
+  <p>agent_C_attention.php
+</p>
+
+<p>And voilá, we have one name for the user :  <strong>chris</strong>
+  </p>
+  <h3>💡 Answer the questions below
+  </h3>
+  <p>How many open ports? <strong>3</strong><br>
+    How you redirect yourself to a secret page? <strong>user-agent</strong><br>
+    What is the agent name? <strong>chris</strong><br>
+</p>
+
+<!-- Hash Cracking and Brute Force-->
+<h2 id="Hash-Craking-Brute-Force"><a href="#Hash-Craking-Brute-Force" class="headerlink" title="Hash Cracking and Brute Force"></a>Hash Cracking and BruteForce</h2>
+
+<p><cite>Done enumerate the machine? Time to brute your way out.</cite><br>
+Remember that open FTP port? Let´s go back to that. 
+</p>
+
+<p> Now that we know the user, lets brute force the password with <strong>hydra.</strong></p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+hydra -l chris -P /usr/share/wordlists/rockyou.txt </td></figure>
+<br>
+<img src="../images/agent-sudo/12.png" class=""><br>
+
+<p> And we have the password for user <strong>chris</strong></p>
+<p> Let´s log into FTP.</p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+ftp://$ip</td></figure>
+<br>
+<img src="../images/agent-sudo/13.png" class=""><br>
+<img src="../images/agent-sudo/14.png" class=""><br>
+
+<p> Time to download the files to inspect them. </p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+mget * </td></figure>
+<br>
+<img src="../images/agent-sudo/15.png" class=""><br>
+
+<p> We got the files. Let´s open the text file <strong>To_agentJ.txt</strong> </p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+mget * </td></figure>
+<br>
+<img src="../images/agent-sudo/16.png" class=""><br>
+
+<p> So, there is a user starting with <strong>J.</strong></p>
+<p> Now, open the images</p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+feh cutie.png <br>
+feh cute-alien.jpg</td></figure>
+<br>
+<img src="../images/agent-sudo/17.png" class=""><br>
+
+<p> Now let´s analyze the images with <strong>binwalk.</strong></p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+binwalk cute-alien.jpg</td></figure>
+<br>
+<img src="../images/agent-sudo/19.png" class=""><br>
+</td><td class="code"><span class="line">
+binwalk cutie.png</td></figure>
+<br>
+<img src="../images/agent-sudo/20.png" class=""><br>
+<p> Look at that zip</strong></p>
+
+
+<p> Now that we know that there is something hidden inside the images let´s use <strong>steghide.</strong>
+  Steghide is a steganography tool that uses a passcode to <strong>hide private files within an image or audio file. </strong></p>
+
+<!-- Link Image -->
+<a target="_blank" href="https://www.kali.org/tools/stegcracker/">
+  <img src="../images/agent-sudo/stegcracker.png" alt="Agent Sudo">
+</a>
+<!-- Link Image -->
+<p> If you don´t have it installed type sudo apt install stegcracker</p>
+<p>Depending on your machine's velocity and the wordlist, this can take a while.</p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+stegcracker cute-alien.jpg /usr/share/wordlists/rockyou.txt</td></figure>
+<br>
+<img src="../images/agent-sudo/22.png" class=""><br>
+
+
+<p> We have some results in a new file called <strong>cute-alien.jpg.out</strong> and the password for the zip : <strong>Area51</strong></p>
+<img src="../images/agent-sudo/23.png" class=""><br>
+
+<p> So now we know there is another user called <strong>james</strong> with the password <strong>hackerrules!</strong>
+  We will do the same for the other image and extract the contents of the zip. This command must be run as root. </p>
+  <figure class="highlight bash"><td class="gutter">
+  </td><td class="code"><span class="line">
+  binwalk -e cutie.png --run-as=root</td></figure>
+  <br>
+  <p> And we get a new directory <strong>_cutie.png extracted</strong></p>
+<img src="../images/agent-sudo/24.png" class=""><br>
+<p> Let´s cd there and see what is inside. </p>
+<img src="../images/agent-sudo/25.png" class=""><br>
+<p>That zip looks promising</p>
+<p> The zip is password protected, I will use <strong>zip2john</strong> to hash from the zip then use john to crack it. </p>
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+zip2john 8702.zip > hash </td></figure>
+<img src="../images/agent-sudo/26.png" class="">
+
+<figure class="highlight bash"><td class="gutter">
+</td><td class="code"><span class="line">
+john hash </td></figure>
+<br>
+<img src="../images/agent-sudo/26.5.png" class=""><br>
+<p>And there it is, the password for the zip. </p>
+
+<h3>💡 Answer the questions below
+</h3>
+<p>FTP password  <strong>crystal</strong><br>
+  Zip file password <strong>Area51</strong><br>
+  Who is the other agent (in full name)? <strong>james</strong><br>
+  SSH Password <strong>hackerrules!</strong><br>
+</p>
+
+<!-- End Hash Cracking and Brute Force-->
+
+<!-- User Flag -->
+<h2 id="User-Flag"><a href="#User-Flag" class="headerlink" title="Capture the User Flag"></a>Capture the User Flag</h2>
+<p><cite>You know the drill.</cite><br>
+  <p>We know the user james and his password, so let´s ssh into the machine.</p>
+</p>
+<figure class="highlight bash"><td class="code"><span class="line">
+ssh james@10.10.232.67
+</td></figure>
+<img src="../images/agent-sudo/27.png" class="">
+<p>We got the user flag.</p>
+<p>Now, let´s download the picture to inspect further. </p>
+<p>To view the image I used SCP tool on my local machine to get the image from the SSH server. So I had to exit the remote machine.</p>
+<figure class="highlight bash"><td class="gutter"></td>
+<td><td class="code"><span class="line">
+sudo scp james@10.10.232.67:Alien_autospy.jpg / </td></figure>
+<p>Open the image. </p>
+<figure class="highlight bash"><td class="gutter"></td>
+<td><td class="code"><span class="line">
+feh Alien_autospy.jpg </td></figure>
+<br>
+<img src="../images/agent-sudo/28.png" class=""><br>
+<p>I reverse searched the image using <strong>TinyEye</strong> </p>
+
+<!-- Link Image -->
+<a target="_blank" href="https://tineye.com/">
+  <img src="../images/agent-sudo/tineye.png" alt="TinEye">
+</a>
+<!-- Link Image -->
+<p>And there is what we get after search the image, so we can answer the question below.  </p>
+<img src="../images/agent-sudo/29.png" class=""><br>
+
+<h3>💡 Answer the questions below
+</h3>
+<p>What is the user flag?  <strong>b03d975e8c92a7c04146cfa7a5a313c7</strong><br>
+  What is the incident of the photo called? <strong>Roswell Alien Autopsy</strong><br>
+</p>
+  
+<!-- End User Flag -->
+
+<!-- Privilege Scalation -->
+<h2 id="Privilege-Scalation"><a href="#Privilege-Scalation" class="headerlink" title="Privilege Scalation"></a>Privilege Scalation</h2>
+<p><cite>Enough with the extraordinary stuff? Time to get real.</cite><br>
+
+<p>We do a simple enumeration with <strong>sudo -l</strong> to list the commands/files that we can execute without a password and with root privileges, we see <strong>/bin/bash</strong> but when we try to execute it with sudo it does not work. 
+</p>
+<figure class="highlight bash"><td class="gutter"></td>
+  <td><td class="code"><span class="line">
+  sudo -l </td></figure>
+  <br>
+  <img src="../images/agent-sudo/30.png" class=""><br>
+  <figure class="highlight bash"><td class="gutter"></td>
+  <td><td class="code"><span class="line">
+  sudo /bin/bash/ </td></figure>
+  <img src="../images/agent-sudo/31.png" class=""><br>
+  
+  <p>We look for a vulnerability for sudo and we see that there is an exploit with which we can obtain superuser access.</p>
+  <img src="../images/agent-sudo/35.png" class=""><br>
+  
+ <!-- Link Image -->
+<a target="_blank" href="https://www.exploit-db.com/exploits/47502">
+  <img src="../images/agent-sudo/sudo.png" alt="Exploit Link">
+</a>
+<p>It´s recommended that you read the exploit to understand how it works. </p>
+<img src="../images/agent-sudo/32.png" alt="Exploit">
+<p>Execute the command in james shell and we get root access. </p>
+<figure class="highlight bash"><td class="gutter"></td>
+  <td><td class="code"><span class="line">
+  sudo -u#-1 /bin/bash </td></figure>
+  <img src="../images/agent-sudo/33.png" class=""><br>
+
+  <p>Once we got access to the root shell, look for the root flag. </p>
+  
+    <img src="../images/agent-sudo/34.png" class=""><br>
+  
+
+
+  
+
+
+<h3>💡 Answer the questions below</h3>
+<p>CVE number for the escalation <strong>CVE-2019–14287</strong><br>
+    What is the root flag? <strong>b53a02f55b57d4439e3341834d70c062</strong><br>
+    (Bonus) Who is Agent R? <strong>Deskel</strong><br>
+</p>
+
+
+<!--End Privilege Scalation -->
+
+<!-- Conclusion -->
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
+<p>Wow, that was a long one, hope u have fun as I did 👽</p>
+
+<!-- End Conclusion -->
+
+</div>
+</article>
+
+
+
+        
+<div id="footer-post-container">
+<div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+      </ul>
+</div>
+
+<div id="toc-footer" style="display: none">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Author-Note"><span class="toc-number">1.</span> <span class="toc-text">Author Note</span></a>
+  </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enumeration"><span class="toc-number">2.</span> <span class="toc-text">Enumeration</span></a>
+  </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-Craking-Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Hash Cracking and Brute force</span></a>
+  </li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Flag"><span class="toc-number">4.</span> <span class="toc-text">Capture the User Flag</span></a>
+  </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Privilege-Scalation"><span class="toc-number">5.</span> <span class="toc-text">Privilege Scalation</span></a>
+  </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">6.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+</div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+        <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+        <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&text=Agent Sudo - TryHackMe"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+        <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&title=Agent Sudo - TryHackMe"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+        <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&is_video=false&description=Agent Sudo - TryHackMe"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="mailto:?subject=Agent Sudo - TryHackMe - TryHackMe&body=Check out this article: https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+        <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html/&title=Agent Sudo - TryHackMe"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+        <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dex-tar.github.io/2023/ctf-try-hack-me-agent-sudo.html&name=Agent Sudo - TryHackMe&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+      </ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#toc" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#toc-footer" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Sections</a>
+        <a id="share" class="icon" href="#share-footer" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="ctf-try-hack-me-agent-sudo.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+<footer id="footer">
+    <div class="footer-left">
+      Copyright &copy;
+      
+      
+      2023
+      Dextar
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+           
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../archives.html">Archive</a></li>
+        </ul>
+      </nav>
+</div>
+</footer>
+  
+</div>
+
+<!-- styles -->  
+<link rel="stylesheet" href="../lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="../lib/justified-gallery/css/justifiedGallery.min.css">
+  
+  
+<!-- jquery -->
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+  
+<!-- clipboard --> 
+<script src="../lib/clipboard/clipboard.min.js"></script>
+  
+<script type="text/javascript">
+    $(function() {
+      // copy-btn HTML
+      var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+      btn += '<i class="far fa-clone"></i>';
+      btn += '</span>'; 
+      // mount it!
+      $(".highlight table").before(btn);
+      var clip = new ClipboardJS('.btn-copy', {
+        text: function(trigger) {
+          return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+        }
+      });
+      clip.on('success', function(e) {
+        e.trigger.setAttribute('aria-label', "Copied!");
+        e.clearSelection();
+      })
+    })
+</script>
+  
+  
+<script src="../js/main.js"></script>
+  
+<!-- search -->
+<script src="../js/search.js"></script>
+
+  <!-- Google Analytics -->
+  <!-- Baidu Analytics -->
+  <!-- Umami Analytics -->
+  <!-- Disqus Comments -->
+  
+  
+  </body>
+  </html>
+  
