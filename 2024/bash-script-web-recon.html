@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<!-- so meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="Ethical Hacking // Pentesting">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dextar">
+<meta property="og:url" content="https://dex-tar.github.io/2023/bash-script-web-recon.html">
+<meta property="og:site_name" content="Dextar">
+<meta property="og:description" content="Ethical Hacking // Pentesting">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="dextar">
+<meta property="og:image" content="https://dex-tar.github.io/images/bash_script_w_recon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dex-tar.github.io/images/bash_script_w_recon.png">
+    
+        
+<!-- title -->
+<title>Bash Script for Web Reconnaissance 🌐</title>
+    
+<!-- styles -->    
+<link rel="stylesheet" href="../css/style.css">
+    
+<!-- persian styles -->      
+<link rel="stylesheet" href="../css/rtl.css">
+    
+<!-- rss -->
+<link rel="alternate" href="https://dex-tar.github.io/" title="Ethical Hacking // Pentesting" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+<div id="header-post">
+<a id="menu-icon" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+<a id="menu-icon-tablet" href="index.html#"><i class="fas fa-bars fa-lg"></i></a>
+<a id="top-icon-tablet" href="index.html#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id="menu">
+  <span id="nav">
+    <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+        
+    </ul>
+  </span>
+<br>
+    
+<span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="../2023/ctf-try-hack-me-agent-sudo.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href=""><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+
+        <li><a class="icon" href="bash-script-web-recon.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="bash-script-web-recon.html"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+<div id="share" style="display: none">
+  <ul>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dextar.github.io/2024/bash-script-web-recon.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dextar.github.io/2024/bash-script-web-recon.html&text=Bash Script for Web Reconnaissance"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dextar.github.io/2024/bash-script-web-recon.html&title=Bash Script for Web Reconnaissance"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dextar.github.io/2024/bash-script-web-recon.html&is_video=false&description=Bash Script for Web Reconnaissance"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Bash Script for Web Recconnaissance &body=Check out this article: https://dextar.github.io/2024/bash-script-web-recon.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dextar.github.io/2024/bash-script-web-recon.html/&title=Bash Script for Web Recconnaissance"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dextar.github.io/2024/bash-script-web-recon.html&name=Bash Script for Web Recconnaissance&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  </ul>
+</div>
+<!-- sections -->
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a>
+    </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploring"><span class="toc-number">2.</span> <span class="toc-text">Script Capabilities</span></a>
+    </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Full"><span class="toc-number">2.</span> <span class="toc-text">Full Script</span></a>
+    </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explanation"><span class="toc-number">4.</span> <span class="toc-text">Functions Explanation</span></a>
+    </li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+</div>
+</span>
+</div>
+<!-- end sections -->
+ 
+
+
+<div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<header>    
+    <h1 class="posttitle" itemprop="name headline">
+        Bash Script for Web Recon
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Dextar</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-04T22:00:00.000Z" itemprop="datePublished">2024-01-04</time>   
+  </div>
+
+
+      
+  <div class="article-category">
+          <i class="fas fa-archive"></i>
+          <a class="category-link" href="../categories/category-scripts.html">scripts</a> › <a class="category-link" href="../categories/category-scripts.html">tools</a>
+  </div>
+  </div>
+  
+</header>
+<div class="content" itemprop="articleBody">
+    <img src="../images/bash_script_w_recon.png" class="">
+</div>
+
+<div class="content" itemprop="articleBody">
+<h2 id="intro"><a href="#intro" class="headerlink" title="Exploring"></a>A Comprehensive Bash Script for Web Reconnaissance</h2>
+
+    <p>
+      In the vast landscape of the internet, security remains a critical concern for website owners and users alike. 
+      Understanding the foundational aspects of a website's security posture is paramount in safeguarding sensitive data and ensuring a trustworthy online presence.<br><br>
+
+      To shed light on this crucial facet of web security, I've crafted a comprehensive script - a tool designed for reconnaissance purposes. 
+      This script aims to provide a structured approach to probing and gathering essential information about a website's infrastructure, all orchestrated through a series of systematic steps.
+    </p>
+
+<h2 id="Exploring"><a href="#Exploring" class="headerlink" title="Exploring"></a>Exploring the Script's Capabilities</h2>
+
+
+      This Simple Web Recon Script combines multiple techniques into a seamless workflow, providing a comprehensive analysis of website security.<br><br>
+
+      <h3>DNS Enumeration:</h3> Unveiling the domain's DNS records - the vital infrastructure map of a website. The script initiates the extraction of Domain Name System (DNS) records 
+      associated with the target domain or IP address. This phase aims to uncover essential information about the domain's infrastructure, such as IP addresses, mail servers (MX records), 
+      canonical names (CNAME records), and text-based records (TXT records).<br>
+
+      <h3>WHOIS Look Up:</h3>  Gathering essential ownership and registration details about the domain by querying WHOIS databases. This step provides insights into administrative 
+      contacts, registration dates, and DNS server information, aiding in understanding the domain's ownership history.<br>
+
+      <h3>Port Scanning:</h3> Probing for open ports and services to assess potential vulnerabilities. This step aids in identifying active services, potentially vulnerable ports, 
+      and service version information, critical for vulnerability assessment and system hardening.<br>
+
+      <h3>Web Server Information:</h3> Uncovering details about the web server, including HTTP/HTTPS responses and SSL certificates. It analyzes server headers to discern details about 
+      the web server, such as response codes, server type/version, and potential redirections.<br>
+
+      <h3>SSL Certificate Information (HTTPS):</h3> Utilizes openssl to inspect and present detailed information about the SSL/TLS certificate associated with the HTTPS connection. 
+      This phase reveals certificate details like issuer information, validity period, and cryptographic specifications.<br>
+
+      <h3>Robots.txt & Directory Listing:</h3> Examining permissions and directory structures for potential vulnerabilities, ensuring secure access control.<br>
+
+
+<h2 id="">An Educational Resource</h2>
+This article accompanies the script to delve into its functionality, showcasing how each step contributes to a comprehensive security assessment. 
+It provides insight into the commands and tools leveraged within the script, aiming to educate and empower individuals interested in understanding web security reconnaissance.
+Let's embark on a journey through each stage of the script, unraveling the significance of DNS records, port scanning, web server responses, and SSL certificates in 
+safeguarding the digital realm.
+
+<h2 id="Full"><a href="#full" class="headerlink" title="Full Script"></a>Full Script</h2>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+  <td class="code"><pre>                
+#!/bin/bash
+
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Function to display banner
+display_banner() {
+    echo -e "${GREEN}"
+    echo " Simple Web Recon Script -  "
+    echo " DNS Enumeration, WHOIS Look Up, Port Scanning "
+    echo " WebServer Information(HTTP) #add https"
+    echo " SSL Certificate Information(HTTPS)"
+    echo " Robots.txt(HTTP) #change to https"
+    echo " Directory Listing (HTTP+HTTPS)"
+    echo -e "${NC}"
+    echo -e "${YELLOW}--- Website Security Recon Script ---${NC}"
+    echo ""
+}
+
+# Display Banner
+display_banner
+
+# Get user input for IP or domain
+read -p "Enter IP or domain: " target
+
+# Check if user provided an IP or domain
+if [ -z "$target" ]; then
+    echo -e "${RED}Invalid input. Please provide an IP or domain.${NC}"
+    exit 1
+fi
+
+# Step 1: DNS Enumeration
+echo -e "${YELLOW}Performing DNS Enumeration...${NC}"
+host "$target"
+
+# Array of DNS record types
+record_types=("A" "AAAA" "CNAME" "MX" "TXT")
+
+# Loop through record types and perform nslookup
+for record_type in "${record_types[@]}"; do
+    echo -e "${GREEN}${record_type} records:${NC}"
+    nslookup -type="$record_type" "$target" | grep -v 'NXDOMAIN\|SERVFAIL'
+    echo ""
+done
+
+# Step 2: WHOIS Lookup
+echo -e "${YELLOW}Performing WHOIS Lookup...${NC}"
+whois "$target"
+echo ""
+
+# Step 3: Port Scanning and export results to text
+echo -e "${YELLOW}Performing Port Scanning...${NC}"
+nmap -sC -sV -oN "nmap-scan-$target.txt" "$target"
+echo ""
+
+# Step 4: Web Server Information (HTTP + HTTPS)
+echo -e "${YELLOW}Fetching Web Server Information (HTTP)...${NC}"
+curl -I "http://$target" 2>/dev/null | head -n 1
+echo ""
+
+echo -e "${YELLOW}Fetching Web Server Information (HTTPS)...${NC}"
+curl -I "https://$target" 2>/dev/null | head -n 1
+echo ""
+
+# Step 5: SSL Certificate Information (HTTPS)
+echo -e "${YELLOW}Fetching SSL Certificate Information (HTTPS)...${NC}"
+<code>openssl s_client -showcerts -connect "$target:443" &lt;/dev/null 2&gt;/dev/null | openssl x509 -noout -text</code>
+echo ""
+
+# Step 6: Robots.txt (HTTP + HTTPS)
+echo -e "${YELLOW}Fetching Robots.txt Information (HTTP)...${NC}"
+curl -sL "http://$target/robots.txt" 2>/dev/null
+
+echo -e "${YELLOW}Fetching Robots.txt Information (HTTPS)...${NC}"
+curl -sL "https://$target/robots.txt" 2>/dev/null
+echo ""
+
+# Step 7: Directory Listing Check (HTTP + HTTPS)
+echo -e "${YELLOW}Checking for Directory Listing (HTTP)...${NC}"
+response_http=$(curl -s -o /dev/null -w "%{http_code}" "http://$target/")
+if [ "$response_http" -eq 200 ]; then
+    echo "Directory listing over HTTP is enabled."
+else
+    echo "Directory listing over HTTP is not enabled. Attempting directory brute-forcing..."
+    dirb "http://$target" /usr/share/wordlists/dirb/common.txt -f
+fi
+echo ""
+
+echo -e "${YELLOW}Checking for Directory Listing (HTTPS)...${NC}"
+response_https=$(curl -s -o /dev/null -w "%{http_code}" "https://$target/")
+if [ "$response_https" -eq 200 ]; then
+    echo "Directory listing over HTTPS is enabled."
+else
+    echo "Directory listing over HTTPS is not enabled. Attempting directory brute-forcing..."
+    dirb "https://$target" /usr/share/wordlists/dirb/common.txt -f
+fi
+echo ""
+</pre></td></tr></table></figure>
+    
+
+<h2 id="Explanation"><a href="#Explanation" class="headerlink" title="Functions Explanation"></a>Functions Explanation</h2>
+
+<h3>1 // Banner Display Function</h3>
+
+This part of the script serves the purpose of creating an informative and visually appealing banner that provides an overview of the script's capabilities. 
+It utilizes color-coded text to enhance readability in the terminal. Let's explore its components:<br>
+      
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+#!/bin/bash
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Function to display banner
+display_banner() {
+    echo -e "${GREEN}"
+    echo " Simple Web Recon Script -  "
+    echo " DNS Enumeration, WHOIS Look Up, Port Scanning "
+    echo " WebServer Information(HTTP+HTTPS)"
+    echo " SSL Certificate Information(HTTPS)"
+    echo " Robots.txt(HTTP+HTTPS)"
+    echo " Directory Listing (HTTP+HTTPS)"
+    echo -e "${NC}"
+    echo -e "${YELLOW}--- Website Security Recon Script ---${NC}"
+    echo ""
+}
+
+# Display Banner
+display_banner            
+</pre></td></tr></table></figure>
+    
+<p> · Color Definitions: ANSI escape sequences define various colors used in the terminal output.<br><br>
+    · display_banner() Function: This function generates an illustrative banner with descriptive text about the script's functionalities. It utilizes specific colors for readability.
+      Invoking display_banner() prints the informative banner to the terminal when the script is executed.</p><br>
+
+<h3>2 // User Input Validation</h3>
+
+This section of the script is responsible for collecting user input regarding the IP address or domain name targeted for reconnaissance. Let's break down its functionality:<br>
+          
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>    
+# Get user input for IP or domain
+read -p "Enter IP or domain: " target
+              
+# Check if user provided an IP or domain
+if [ -z "$target" ]; then
+    echo -e "${RED}Invalid input. Please provide an IP or domain.${NC}"
+    exit 1
+fi
+</pre></td></tr></table></figure>
+        
+<p> · read -p "Enter IP or domain: " target: Prompts the user to input an IP address or domain name using the read command. The provided input is stored in the target variable.<br><br>
+    · Input Validation: The script checks whether the user has provided valid input (i.e., the target variable is not empty). <br><br>
+    · Error Message and Exit: If the input is invalid (empty), an error message in red color is displayed, indicating that the input was invalid. 
+    · The script then exits with a status code of 1, halting further execution.<br>
+    
+
+<h3>3 // DNS Enumeration</h3>
+
+This segment encompasses DNS Enumeration, a fundamental step in discovering critical information about a domain's infrastructure. Let's examine the code section responsible for this enumeration:<br>
+                      
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>                
+# Step 1: DNS Enumeration
+echo -e "${YELLOW}Performing DNS Enumeration...${NC}"
+host "$target"
+  
+# Array of DNS record types
+record_types=("A" "AAAA" "CNAME" "MX" "TXT")
+  
+# Loop through record types and perform nslookup
+for record_type in "${record_types[@]}"; do
+    echo -e "${GREEN}${record_type} records:${NC}"
+    nslookup -type="$record_type" "$target" | grep -v 'NXDOMAIN\|SERVFAIL'
+done
+</pre></td></tr></table></figure>
+                    
+<p> · DNS Enumeration Prompt: The script initiates DNS Enumeration and displays a message indicating this action in yellow color using echo -e.<br><br>
+    · host "$target": Utilizes the host command to perform an initial DNS query for the provided IP or domain stored in the target variable.<br><br>
+    · Array of DNS Record Types: Defines an array record_types containing specific DNS record types: A, AAAA, CNAME, MX, and TXT.
+      Loop through Record Types: Iterates through each DNS record type in the record_types array.<br><br>
+    · Performing nslookup: Executes nslookup for each record type and the provided target (domain or IP). It filters the output using grep -v to exclude 
+    lines containing 'NXDOMAIN' (Non-Existent Domain) or 'SERVFAIL' (Server Failure) errors.<br><br>
+
+    
+<h3>4 // WHOIS Lookup</h3>
+
+This portion of the script initiates a WHOIS lookup to gather essential registration and ownership details related to the specified domain. Let's dissect this code section:<br>
+                          
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>                    
+# Step 2: WHOIS Lookup
+echo -e "${YELLOW}Performing WHOIS Lookup...${NC}"
+whois "$target"
+</pre></td></tr></table></figure>                     
+<p> · WHOIS Lookup Prompt: The script announces the commencement of a WHOIS Lookup, displaying a message in yellow color using echo -e.<br><br>
+    · whois "$target": Executes the whois command, querying WHOIS databases for detailed information related to the domain or IP stored in the target variable.<br>
+    · Displaying WHOIS Information: Prints the retrieved WHOIS information to the terminal.<br><br>
+
+
+<h3>5 // Port Scanning and Exporting Results</h3>
+
+This section of the script conducts a port scanning operation using nmap and exports the results to a text file. Let's break down this code section:<br>
+                              
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+# Step 3: Port Scanning and export results to text
+echo -e "${YELLOW}Performing Port Scanning...${NC}"
+nmap -sC -sV -oN "nmap-scan-$target.txt" "$target"
+
+</pre></td></tr></table></figure>
+                            
+<p> · Port Scanning Prompt: The script initiates Port Scanning and displays a message in yellow color using echo -e.<br><br>
+    · nmap Command: Executes the nmap command with specific options:<br>
+    &emsp;&emsp;-sC: Performs default script scanning.<br>
+    &emsp;&emsp;-sV: Attempts to determine service versions.<br>
+    &emsp;&emsp;-oN "nmap-scan-$target.txt": Saves the scan results in a text file named "nmap-scan-$target.txt" (where $target is the provided domain or IP address).<br><br>
+    · "$target": Specifies the target IP address or domain name to be scanned.<br><br>
+    
+
+<h3>6 // Web Server Information Retrieval (HTTP + HTTPS)</h3>
+
+This section of the script focuses on obtaining essential details about the web server's response for both HTTP and HTTPS connections. Let's dissect this code segment:<br>
+                              
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+# Step 4: Web Server Information (HTTP + HTTPS)
+echo -e "${YELLOW}Fetching Web Server Information (HTTP)...${NC}"
+curl -I "http://$target" 2>/dev/null | head -n 1
+
+echo -e "${YELLOW}Fetching Web Server Information (HTTPS)...${NC}"
+curl -I "https://$target" 2>/dev/null | head -n 1
+</pre></td></tr></table></figure>
+                            
+<p> · HTTP Information Fetching: Initiates the retrieval of web server information for HTTP connections. It displays a message in yellow color using echo -e.<br><br>
+    · curl -I "http://$target": Executes curl to send a HEAD request (-I flag) to the specified HTTP target (http://$target) to retrieve the server's response headers.<br>
+    &emsp;&emsp;&emsp;&emsp;2>/dev/null: Redirects error messages to /dev/null, discarding them for a cleaner output.<br>
+    &emsp;&emsp;&emsp;&emsp;| head -n 1: Pipes the output to head command to display only the first line of the response headers.<br><br>
+    · HTTPS Information Fetching: Initiates the retrieval of web server information for HTTPS connections. It also displays a message in yellow color using echo -e. 
+    The rest of the command is the same as in the HTTP part.<br>
+
+
+<h3>7 // SSL Certificate Information Retrieval (HTTPS)</h3>
+
+This section of the script is dedicated to fetching and displaying detailed SSL certificate information associated with the HTTPS connection. Let's break down this code segment: <br>
+                              
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+# Step 5: SSL Certificate Information (HTTPS)
+echo -e "${YELLOW}Fetching SSL Certificate Information (HTTPS)...${NC}"
+<code>openssl s_client -showcerts -connect "$target:443" &lt;/dev/null 2&gt;/dev/null | openssl x509 -noout -text</code>
+</pre></td></tr></table></figure>
+                            
+<p> · SSL Certificate Fetching Prompt: The script prompts the retrieval of SSL Certificate Information for HTTPS connections, displaying a message in yellow color using echo -e.<br><br>
+    · openssl s_client Command: Initiates an SSL/TLS connection to the specified target ("$target:443"), where 443 is the default HTTPS port.<br>
+    &emsp;&emsp;&emsp;&emsp;-showcerts: Instructs OpenSSL to display detailed certificate information during the SSL handshake.<br>
+    &emsp;&emsp;&emsp;&emsp;<code>&lt;/dev/null 2&gt;</code>/dev/null: Provides an empty input stream and redirects errors to /dev/null to prevent unnecessary output.<br><br>
+  | · openssl x509 -noout -text: Pipes the output from the SSL connection to openssl x509, which extracts and displays detailed textual information about the SSL certificate.<br><br>
+
+
+<h3>8 // Robots.txt Retrieval (HTTP + HTTPS)</h3>
+
+This script section focuses on retrieving the robots.txt file for both HTTP and HTTPS connections. Let's break down this code segment: <br>
+                              
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+# Step 6: Robots.txt (HTTP + HTTPS)
+echo -e "${YELLOW}Fetching Robots.txt Information (HTTP)...${NC}"
+curl -sL "http://$target/robots.txt" 2>/dev/null
+
+echo -e "${YELLOW}Fetching Robots.txt Information (HTTPS)...${NC}"
+curl -sL "https://$target/robots.txt" 2>/dev/null
+</pre></td></tr></table></figure>
+                            
+<p> · Robots.txt Retrieval (HTTP): Begins the retrieval of the robots.txt file for HTTP connections and displays a message in yellow color using echo -e.<br><br>
+  &emsp;&emsp;&emsp;&emsp;curl -sL "http://$target/robots.txt": Utilizes curl to fetch the robots.txt file for HTTP connections (http://$target/robots.txt). The -s flag ensures silent mode, and -L follows redirections.<br>
+  &emsp;&emsp;&emsp;&emsp; 2>/dev/null: Redirects error messages to /dev/null, discarding them for a cleaner output.<br><br>
+    · Robots.txt Retrieval (HTTPS): Commences the retrieval of the robots.txt file for HTTPS connections, displaying a similar yellow-colored message.<br>
+  &emsp;&emsp;&emsp;&emsp;curl -sL "https://$target/robots.txt": Uses curl to obtain the robots.txt file for HTTPS connections (https://$target/robots.txt).<br>
+    
+<h3>9 // Directory Listing Check for HTTP and HTTPS</h3>
+
+The script section below focuses on conducting a directory listing check for both HTTP and HTTPS connections. It encompasses a comprehensive approach to assess the 
+status of directory listing for a given target. <br>
+                              
+<figure class="highlight bash"><table><tr><td class="gutter"></td>
+<td class="code"><pre>
+# Step 7: Directory Listing Check (HTTP + HTTPS)
+echo -e "${YELLOW}Checking for Directory Listing (HTTP)...${NC}"
+response_http=$(curl -s -o /dev/null -w "%{http_code}" "http://$target/")
+if [ "$response_http" -eq 200 ]; then
+    echo "Directory listing over HTTP is enabled."
+else
+    echo "Directory listing over HTTP is not enabled. Attempting directory brute-forcing..."
+    dirb "http://$target" /usr/share/wordlists/dirb/common.txt -f
+fi
+
+
+echo -e "${YELLOW}Checking for Directory Listing (HTTPS)...${NC}"
+response_https=$(curl -s -o /dev/null -w "%{http_code}" "https://$target/")
+if [ "$response_https" -eq 200 ]; then
+    echo "Directory listing over HTTPS is enabled."
+else
+    echo "Directory listing over HTTPS is not enabled. Attempting directory brute-forcing..."
+    dirb "https://$target" /usr/share/wordlists/dirb/common.txt -f
+fi
+
+</pre></td></tr></table></figure>
+                            
+<p> This script segment performs a dual-check for directory listing status over both HTTP and HTTPS connections.<br><br>
+  It first sends HTTP and HTTPS requests to the target server's root directory and examines the HTTP response code. If the response code is 200, it implies that directory listing is enabled 
+  for the respective protocol. If not, the script proceeds with a directory brute-forcing attempt using dirb along with the -f flag for fine-tuning, aiming to discover potential hidden 
+  directories despite possible redirections or unstable responses encountered during the process.<br>
+  By integrating these checks into the reconnaissance process, this script aims to provide insights into the configuration and security aspects related to directory 
+  listing for both HTTP and HTTPS connections, facilitating a comprehensive assessment of potential information exposure and access control on the target server.<br><br>
+  
+  <i>However, it's worth noting that, due to time constraints or other factors, you may choose to deactivate the HTTP scan within this script. To accomplish this, simply comment out or remove the HTTP directory listing check section while retaining the HTTPS assessment. 
+  This modification streamlines the reconnaissance to focus solely on HTTPS, which might be a pragmatic decision when time is limited or when the website primarily operates over secure connections.</i>
+
+</p> 
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
+
+<p>This comprehensive web reconnaissance script offers a systematic approach to gather critical information about a website's infrastructure and security posture.<br>
+    From DNS enumeration to SSL certificate analysis and directory listing checks, each step provides valuable insights to aid in assessing potential vulnerabilities and security misconfigurations.<br>
+    It's essential to emphasize that this script is designed for educational purposes and must only be utilized with proper permissions. 
+    Any form of web reconnaissance or security assessment should be conducted ethically and in compliance with legal regulations. 
+    It's imperative to seek explicit authorization before probing or testing any website's security.<br>
+    I hope this script has provided valuable insights into the importance of thorough reconnaissance in understanding a website's security landscape.<br>
+    Thank you for taking the time to explore this script. Remember, security is a shared responsibility.
+    <br>
+</p>
+
+
+</div>
+</article>
+
+        
+<div id="footer-post-container">
+<div id="footer-post">
+<div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="../index.html">Home</a></li>         
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+      </ul>
+</div>
+
+<div id="toc-footer" style="display: none">      
+</div>
+
+<div id="share-footer" style="display: none">
+  <ul>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://dextar.github.io/2023/bash-script-system-check.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://dextar.github.io/2023/bash-script-system-check.html&text=Bash Script for System Check"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://dextar.github.io/2023/bash-script-system-check.html&title=Bash Script for System Check"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://dextar.github.io/2023/bash-script-system-check.html&is_video=false&description=Bash Script for System Check"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+    <li><a class="icon" href="mailto:?subject=Bash Script for System Check&body=Check out this article: https://dextar.github.io/2023/bash-script-system-check.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://dextar.github.io/2023/bash-script-system-check.html/&title=Bash Script for System Check"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+    <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://dextar.github.io/2023/bash-script-system-check.html&name=Bash Script for System Check&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+</div>
+
+<div id="actions-footer">
+        <a id="menu" class="icon" href="#menu" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="share" class="icon" href="share-footer#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="bash-script-system-check.html" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+</div>
+
+</div>
+</div>
+
+        
+<footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+        
+    2023
+    Dextar
+</div>
+<div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="../index.html">Home</a></li>         
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../archives.html">Archive</a></li>
+      </ul>
+    </nav>
+</div>
+</footer>
+
+</div>
+    
+<!-- styles -->
+<link rel="stylesheet" href="../lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="../lib/justified-gallery/css/justifiedGallery.min.css">
+    
+<!-- jquery -->
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+<script src="../lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+</script>
+
+
+<script src="../js/main.js"></script>
+
+<!-- search -->
+<script src="js/search.js"></script>
+
+<!-- Google Analytics -->
+<!-- Baidu Analytics -->
+<!-- Umami Analytics -->
+<!-- Disqus Comments -->
+
+</body>
+</html>
